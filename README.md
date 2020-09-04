@@ -15,6 +15,8 @@ To run the terraform script
 2.	terraform plan (And check if the plan works out for you) 
 3.	terraform apply 
 
+A code deploy deployment group will be automatically created. And you will just need to create a deployment manually.
+
 Enjoy Terraforming on AWS! 
 
 
