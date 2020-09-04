@@ -1,7 +1,0 @@
-AmazonEC2FullAccess_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-AWSCodedeploy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
-AmazonS3FullAccess_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-r53zone = "chkpsgse.com"
-key_name = "MyKeys_Transit"
-ubuntu_18_sydney = "ami-0f87b0a4eff45d9ce"
-externaldnshost = "cddemo"
