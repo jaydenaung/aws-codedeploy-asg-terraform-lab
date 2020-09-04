@@ -11,15 +11,14 @@ This lab will create the following
 
 ---------------------------------------------------------------
 To run the terraform script 
-1.	terraform init \
-2.	terraform plan (And check if the plan works out for you) \
+1.	terraform init 
+2.	terraform plan (And check if the plan works out for you) 
+3.	terraform apply 
 
-3.	terraform apply \
-
-Enjoy Terraforming on AWS! \
+Enjoy Terraforming on AWS! 
 
 
-Best, \
+Best, 
 Jayden Aung
 ----------------------------------------------------------------
 
