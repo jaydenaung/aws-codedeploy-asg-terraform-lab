@@ -1,7 +1,4 @@
-# -------------------------------------------
-# Create an External ALB for the applications 
-# -------------------------------------------
-# Security group for alb
+
 resource "aws_security_group" "ealb_sg" {
   name        = "${var.project_name}-Ext-LB-SG"
   description = "load balancer security group"
@@ -20,7 +17,6 @@ resource "aws_security_group" "ealb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # Allow all outbound traffic.
   egress {
     from_port   = 0
     to_port     = 0

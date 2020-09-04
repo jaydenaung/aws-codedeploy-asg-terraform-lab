@@ -3,7 +3,6 @@ resource "aws_launch_configuration" "web_launch_conf" {
   name_prefix          = "devops-"
   image_id             = var.ubuntu_18_sydney
   iam_instance_profile = aws_iam_instance_profile.ec2_cd_instance_profile.name
-  # image_id                    = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   key_name                    = var.key_name
   security_groups             = [aws_security_group.asg_web_sg.id]
