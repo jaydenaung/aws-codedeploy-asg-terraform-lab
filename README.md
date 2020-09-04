@@ -18,7 +18,7 @@ To run the terraform script
 Enjoy Terraforming on AWS! 
 
 
-Best, 
+Best, \
 Jayden Aung
 ----------------------------------------------------------------
 
