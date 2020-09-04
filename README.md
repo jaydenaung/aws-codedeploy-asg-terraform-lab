@@ -9,11 +9,17 @@ This lab will create the following
 6. Route 53 (optional)
 
 
-terraform init
-terraform plan
-(And see if the plan works out for you)
-terraform apply
+---------------------------------------------------------------
+To run the terraform script 
+1.	terraform init \
+2.	terraform plan (And check if the plan works out for you) \
 
-Enjoy terraforming! 
-Best,
+3.	terraform apply \
+
+Enjoy Terraforming on AWS! \
+
+
+Best, \
 Jayden Aung
+----------------------------------------------------------------
+
