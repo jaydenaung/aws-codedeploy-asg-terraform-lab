@@ -10,8 +10,12 @@ One important aspect of DevOps is automating the deployment of your apps, and re
 AWS CodeDeploy is a fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers. AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications.You can use AWS CodeDeploy to automate software deployments, eliminating the need for error-prone manual operations. The service scales to match your deployment needs. 
 (source:AWS website)
 
-## What exactly we will be doing in this lab?
+## Prerequisite
 
+1. [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+2. [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+
+## What exactly we will be doing in this lab?
 
 
 This lab intends to show you how you can automate deploying your application via AWS CodeDeploy. You'll need to download terraform scripts to your local repo.
