@@ -15,8 +15,10 @@ variable "region" {
 data "aws_availability_zones" "azs" {
 }
 
+#VPC CIDR
+#Update this with your desired CIDR range
 variable "devops_cidr_vpc" {
-  description = "Jayden Devops VPC CIDR"
+  description = "Jayden Devops CodeDeploy Demo VPC CIDR"
   default     = "10.40.0.0/16"
 }
 
