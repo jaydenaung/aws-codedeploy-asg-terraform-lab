@@ -51,7 +51,7 @@ Download the necessary terraform scripts by simply cloning (e.g. ```git clone```
 ## 2. Create terraform.tfvars
 ---
 
-We need values that correspond with the ones defined in ```variables.tf```. You will need to create terraform.tvvars for your own variables. For example, ARN of your AWS EC2 Full access role - which is specific to your AWS environment, and can be considered sensitive for public sharing as well. 
+We need values that correspond with the ones defined in ```variables.tf```. You will need to create terraform.tfvars for your own variables. For example, ARN of your AWS EC2 Full access role - which is specific to your AWS environment, and can be considered sensitive for public sharing as well. 
 
 I didn't include mine in this repo for the obvious reasons, and that's why you will need to create one yourself, and place it in the same directory as the rest of terraform scripts. 
 
@@ -79,7 +79,7 @@ externaldnshost = "Your Value"
 
 ```
 
-You will need to ***carefully*** consider the followings for ```terraform.tvvars``` file:
+You will need to ***carefully*** consider the followings for ```terraform.tfvars``` file:
 
 * AmazonEC2FullAccess_arn - Update this with the ARN of AmazonEC2FullAccess policy in your AWS account. You already have a AWS-managed Policy in your AWS Account called "AmazonEC2FullAccess. 
 
