@@ -67,6 +67,8 @@ For example, below is the **AmazonEC2FullAccess**. Take note of the ARN.
 ![header image](img/aws-ec2-policy.png)
 
 
+### terraform.tfvars
+
 ``` bash
 
 AmazonEC2FullAccess_arn = "Your Value" 
