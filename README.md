@@ -51,35 +51,45 @@ For example, below is the **AmazonEC2FullAccess**. Take note of the ARN.
 
 ![header image](img/aws-ec2-policy.png)
 
-You will need to ***carefully*** consider the policy ARNs that you need for 
 
 ``` bash
 
-AmazonEC2FullAccess_arn = "Update this with the ARN of AmazonEC2FullAccess policy in your AWS account" # You already have a AWS-managed Policy in your AWS Account called "AmazonEC2FullAccess" 
-
-AWSCodedeploy_arn = "Update this with the ARN of AWSCodedeployRole policy in your AWS account."
-
-AmazonS3FullAccess_arn = "Update this with the ARN of AWSCodedeployRole policy in your AWS account." #This may or may not be necessary. If your source code is on a private S3 bucket of your own, just create an IAM policy which allows access to that particular S3 bucket, and source code object (zip). 
-
-key_name = "Update this with your EC2 SSH Keys"
-
-ubuntu_18_sydney = "Update this with AMI ID of Ubuntu AIM in your region"
-
-r53zone = "Update this with your Route53 domain name (Optional)" #Only if you have a Route53 domain. Otherwise, please skip this and delete "route53.tf"
-
-externaldnshost = "cddemo" #If you have a Route53 domain, this is the A host for the domain. Otherwise, please skip this and delete "route53.tf".
+AmazonEC2FullAccess_arn = "Your Value" 
+AWSCodedeploy_arn = "Your Value"
+AmazonS3FullAccess_arn = "Your Value"
+key_name = "Your Value"
+ubuntu_18_sydney = "Your Value"
+r53zone = "Your Value"
+externaldnshost = "Your Value"
 
 ```
 
+You will need to ***carefully*** consider the following:
+
+* AmazonEC2FullAccess_arn - Update this with the ARN of AmazonEC2FullAccess policy in your AWS account. You already have a AWS-managed Policy in your AWS Account called "AmazonEC2FullAccess. 
+
+* AWSCodedeploy_arn - Update this with the ARN of AWSCodedeployRole policy in your AWS account.
+
+* AmazonS3FullAccess_arn: Update this with the ARN of AWSCodedeployRole policy in your AWS account. This may or may not be necessary. If your source code is on a private S3 bucket of your own, just create an IAM policy which allows access to that particular S3 bucket, and source code object (zip). 
+
+* key_name: Update this with your EC2 SSH Keys
+
+* ubuntu_18_sydney - Update this with AMI ID of Ubuntu AIM in your region"
+
+* r53zone - Update this with your Route53 domain name (Optional). You will need this Only if you have a Route53 domain. Otherwise, please skip this and delete "route53.tf"
+
+* externaldnshost - You will need this If you have a Route53 domain, this is the A host for the domain. Otherwise, please skip this and delete "route53.tf".
+
 > Note: Ec2 and S3 FullAccess policies SHOULD ONLY BE USED FOR DEMO ENVIRONMENT ONLY! You should always use granular policies in production environment. 
 
+## Execute the Terraform scripts 
 
-To run the terraform script:
+Finally, To execute the terraform script, just do the following
 
 ```bash
 	terraform init 
     terraform plan #(And check if the plan works out for you) 
-    terraform apply 
+    terraform apply #Enter "Yes'
 ```
 A code deploy deployment group will be automatically created. And you will just need to create a deployment and deploy your app manually as the final step.
 
