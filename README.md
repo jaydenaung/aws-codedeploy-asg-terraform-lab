@@ -36,8 +36,8 @@ Download the necessary terraform scripts by simply cloning (e.g. ```git clone```
 1. VPC in ap-southeast-2 Region (you can choose any region that you like)
 2. 3 Subnets in 3 different availability zones
 3. Route table
-4. Launch configuration and Auto scaling group
-5. Launch Config and Autoscaling group
+4. Launch configuration
+5. Autoscaling group
 6. 3 EC2 instances (application servers) with code deploy agents installed
 7. An Application load balancer to load-balance the application servers
 7. CodeDeploy Deployment Group
@@ -156,16 +156,17 @@ Outputs:
 public_dns = devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com
 ```
 
-**Take Note of the public_dns** of the application load balancer (Output) which is devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com for my example. You will need it to access it to the application.
+**Take Note of the public_dns** of the application load balancer (Output) which is devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com for my example. You will need it to access it to the sample application.
 
 By now, the following resources have been created by Terraform.
 
 1. VPC in ap-southeast-2 Region (you can choose any region that you like)
-2. Subnets
+2. 3 Subnets in 3 different availability zones
 3. Route table
-4. Launch configuration and Auto scaling group
-5. Launch Config and Autoscaling group
-6. EC2 instances with code deploy agents installed
+4. Launch configuration
+5. Autoscaling group
+6. 3 EC2 instances (application servers) with code deploy agents installed
+7. An Application load balancer to load-balance the application servers
 7. CodeDeploy Deployment Group
 8. IAM roles for EC2 and Codedeploy
 9. SNS topic for CodeDeploy
