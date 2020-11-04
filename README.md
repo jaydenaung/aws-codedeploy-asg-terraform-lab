@@ -2,6 +2,9 @@
 
 One important aspect of DevOps is automating the deployment of your apps, and release of new features. And it'll be great if you can use Infrastructure-as-Code (IaC) together with cloud provider-native deployment tools to orchestrate and automate the deployment process. In this lab, I'll show you how can use Terraform to automate creation of AWS infrastructure, and work with AWS CodeDeploy to automate deployment of a sample application. Again, this is ALL-AWS Lab, which means, besides Terraform, I'll be using only AWS services in the lab.
 
+![header image](img/Terraform-AWS-CodeDeploy.png)
+
+
 ### What is AWS CodeDeploy
 
 AWS CodeDeploy is a fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers. AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications.You can use AWS CodeDeploy to automate software deployments, eliminating the need for error-prone manual operations. The service scales to match your deployment needs. 
@@ -31,7 +34,8 @@ Download the files by cloning this Git repo. These terraform scripts will create
 7. An Application load balancer to load-balance the application servers
 7. CodeDeploy Deployment Group
 8. IAM roles for EC2 and Codedeploy
-9. Route53 (optional)
+9. SNS topic for CodeDeploy
+10. Route53 (optional)
 
 
 ## Create terraform.tfvars
@@ -89,7 +93,7 @@ Finally, To execute the terraform script, just do the following
 ```bash
 	terraform init 
     terraform plan #(And check if the plan works out for you) 
-    terraform apply #Enter "Yes'
+    terraform apply #Enter "yes" to confirm
 ```
 A code deploy deployment group will be automatically created. And you will just need to create a deployment and deploy your app manually as the final step.
 
@@ -150,7 +154,8 @@ By now, the following resources have been created by Terraform.
 6. EC2 instances with code deploy agents installed
 7. CodeDeploy Deployment Group
 8. IAM roles for EC2 and Codedeploy
-9. Route53 (optional)
+9. SNS topic for CodeDeploy
+10. Route53 (optional)
 
 
 ## Create CodeDeploy Deployment 
@@ -209,7 +214,7 @@ Now, you can go ahead and access the DNS name of the application load balancer o
 
 ![header image](img/cloudguarder-app.png)
 
-CONGRATULATIONS! You've done
+CONGRATULATIONS! You've successfully automated creation of AWS infrastructure and deployed your application to applications servers using AWS CodeDeploy!
 
 
 # Clean-up
