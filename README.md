@@ -118,7 +118,7 @@ Along the way you will (probably) see this error. It will say ```"There is a bug
 
 ![header image](img/tf-bug.png)
 
-While I'm investigating this issue, the quick work around is just to execute ``` terraform apply``` again. This will solve the issue, and compelete the script
+While I'm investigating this issue, the quick work around is just to execute ``` terraform apply``` again. This will solve the issue, and compelete the orchestration. 
 
 ### Expected Output
 
@@ -156,7 +156,7 @@ Outputs:
 public_dns = devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com
 ```
 
-**Take Note of the public_dns** of the application load balancer which is devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com for my example. You will need it to access it to the application.
+**Take Note of the public_dns** of the application load balancer (Output) which is devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com for my example. You will need it to access it to the application.
 
 By now, the following resources have been created by Terraform.
 
