@@ -17,17 +17,21 @@ AWS CodeDeploy is a fully managed deployment service that automates software dep
 
 ## What exactly we will be doing in this lab?
 
+In this lab, I will show you how you can automate and orchestrate creating your AWS infrastructure by using Terraform as IaC, and deploying your application via AWS CodeDeploy. 
 
-This lab intends to show you how you can automate deploying your application via AWS CodeDeploy. You'll need to download terraform scripts to your local repo.
-
-1. Download terraform scripts 
+1. Download terraform scripts from this Git repo
 2. Create ``` terraform.tfvars```
-2. Prepare Deployment Group
+3. Create your AWS environment with Terraform 
+4. Create CodeDeployment "Deployment" manually 
 
+> Note: This lab focuses on automation capability of Terraform, and is designed to make you understand how CodeDeploy works. Hence, the manual process. This process can be automated using AWS CodePipeline. I'll add CodePipeline section at some point.
+5. Test the application deployed by CodeDeploy
+6. Clean up
 
-## Download terraform scripts from this Git repo
+---
+## 1. Download terraform scripts from this Git repo
 
-Download the files by cloning this Git repo. These terraform scripts will create the following;
+Download the necessary terraform scripts by simply cloning (e.g. ```git clone```) this Git repo into your local directory. These terraform scripts will create the following;
 
 1. VPC in ap-southeast-2 Region (you can choose any region that you like)
 2. 3 Subnets in 3 different availability zones
@@ -41,19 +45,22 @@ Download the files by cloning this Git repo. These terraform scripts will create
 9. SNS topic for CodeDeploy
 10. Route53 (optional)
 
+> You might want to exclude/delete route53.tf if you don't have any route53 domain.
 
-## Create terraform.tfvars
+---
+## 2. Create terraform.tfvars
+---
 
-You will need to create terraform.tvvars for your own variables. For example, ARN of your AWS EC2 Full access role - which can be sensitive. 
+We need values that correspond with the ones defined in ```variables.tf```. You will need to create terraform.tvvars for your own variables. For example, ARN of your AWS EC2 Full access role - which is specific to your AWS environment, and can be considered sensitive for public sharing as well. 
 
-I didn't include mine in this repo, and thats why you will need to create one yourself, and place it in the same directory as the rest of terraform scripts. 
+I didn't include mine in this repo for the obvious reasons, and that's why you will need to create one yourself, and place it in the same directory as the rest of terraform scripts. 
 
 ``` bash
 touch terraform.tfvars
 
 ```
 
-In the file, you will need create the followings that correspond with varaibles in the ```variables.tf``` file. Take note of the AWS-managed policy ARN in your AWS accounts
+In the file, you will need create the following values that correspond with variables in the ```variables.tf``` file. Take note of required AWS-managed policy ARNs in your AWS accounts
 
 For example, below is the **AmazonEC2FullAccess**. Take note of the ARN.
 
@@ -72,7 +79,7 @@ externaldnshost = "Your Value"
 
 ```
 
-You will need to ***carefully*** consider the following:
+You will need to ***carefully*** consider the followings for ```terraform.tvvars``` file:
 
 * AmazonEC2FullAccess_arn - Update this with the ARN of AmazonEC2FullAccess policy in your AWS account. You already have a AWS-managed Policy in your AWS Account called "AmazonEC2FullAccess. 
 
@@ -90,18 +97,21 @@ You will need to ***carefully*** consider the following:
 
 > Note: Ec2 and S3 FullAccess policies SHOULD ONLY BE USED FOR DEMO ENVIRONMENT ONLY! You should always use granular policies in production environment. 
 
-## Execute the Terraform scripts 
+---
+## 3. Create your AWS environment with Terraform
 
-Finally, To execute the terraform script, just do the following
+Finally, To execute the terraform script, just do the following:
 
 ```bash
 	terraform init 
     terraform plan #(And check if the plan works out for you) 
     terraform apply #Enter "yes" to confirm
 ```
-A code deploy deployment group will be automatically created. And you will just need to create a deployment and deploy your app manually as the final step.
+A CodeDeploy deployment group will be automatically created by Terraform. And you will just need to create a deployment and deploy your app manually as the final step.
 
-### Terraform Error (Bug)
+> Note: This lab focuses on automation capability of Terraform, and is designed to make you understand how CodeDeploy works. Hence, the manual process. This process can be automated using AWS CodePipeline. I'll add CodePipeline section at some point.
+
+### Terraform Error (Provider Bug)
 
 Along the way you will (probably) see this error. It will say ```"There is a bug in the provider, which should be reported in the provider's own issue tracker."```
 
@@ -161,9 +171,10 @@ By now, the following resources have been created by Terraform.
 9. SNS topic for CodeDeploy
 10. Route53 (optional)
 
+---
+## 4. Create CodeDeployment "Deployment" manually  
 
-## Create CodeDeploy Deployment 
-
+Follow the step-by-step instructions to manually create a CodeDeploy deployment. 
 
 ### 1. Verify that CodeDeploy Application has been created
  Once the terraform script is completed, you should see that a sample application has been created in AWS CodeDeploy called "cloudguarder_app" which i the name of my sample app. You can use your own application. 
@@ -212,6 +223,9 @@ After a few minutues, you should see in the Deployment status that "3 of 3 insta
 
 ![header image](img/cd-6.png)
 
+---
+## 5. Test the application deployed by CodeDeploy 
+
 Now, you can go ahead and access the DNS name of the application load balancer on your browser, and you should see the cloudguarder sample app. 
 
 > Note: the app's code is deployed to all 3 ec2 instances, and an application load balancer is exposed to the Internet for public access. 
@@ -220,14 +234,17 @@ Now, you can go ahead and access the DNS name of the application load balancer o
 
 CONGRATULATIONS! You've successfully automated creation of AWS infrastructure and deployed your application to applications servers using AWS CodeDeploy!
 
-
-# Clean-up
+---
+## 6. Clean-up
 
 To clean up, simply execute the following command in the terraform directory, and enter "yes" when it asks for confirmation of deletion. 
 
 ```bash 
 terraform destroy
 ```
+
+This will delete everything that has been created by Terraform. 
+
 ---
 Hope you've enjoyed this. Happy  Terraforming on AWS! 
 
