@@ -62,7 +62,7 @@ touch terraform.tfvars
 
 In the file, you will need create the following values that correspond with variables in the ```variables.tf``` file. Take note of required AWS-managed policy ARNs in your AWS accounts
 
-For example, below is the **AmazonEC2FullAccess**. Take note of the ARN.
+For example, below is the **AmazonEC2FullAccess**. Take note of the ARN. We will need the IAM policies to be attached to the role that's is used by CodeDeploy (which will be done by Terraform). 
 
 ![header image](img/aws-ec2-policy.png)
 
