@@ -113,14 +113,6 @@ A CodeDeploy deployment group will be automatically created by Terraform. And yo
 
 > Note: This lab focuses on automation capability of Terraform, and is designed to make you understand how CodeDeploy works. Hence, the manual process. This process can be automated using AWS CodePipeline. I'll add CodePipeline section at some point.
 
-### Terraform Error (Provider Bug)
-
-Along the way you will (probably) see this error. It will say ```"There is a bug in the provider, which should be reported in the provider's own issue tracker."```
-
-
-![header image](img/tf-bug.png)
-
-While I'm investigating this issue, the quick work around is just to execute ``` terraform apply``` again. This will solve the issue, and compelete the orchestration. 
 
 ### Expected Output
 
