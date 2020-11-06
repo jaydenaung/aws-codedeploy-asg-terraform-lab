@@ -5,7 +5,7 @@ One important aspect of DevOps is automating the deployment of your apps, and re
 ![header image](img/Terraform-AWS-CodeDeploy.png)
 
 
-### What is AWS CodeDeploy
+### What is AWS CodeDeploy?
 
 AWS CodeDeploy is a fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers. AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications.You can use AWS CodeDeploy to automate software deployments, eliminating the need for error-prone manual operations. The service scales to match your deployment needs. 
 (source:AWS website)
@@ -62,7 +62,7 @@ touch terraform.tfvars
 
 In the file, you will need create the following values that correspond with variables in the ```variables.tf``` file. Take note of required AWS-managed policy ARNs in your AWS accounts
 
-For example, below is the **AmazonEC2FullAccess**. Take note of the ARN. We will need the IAM policies to be attached to the role that's is used by CodeDeploy (which will be done by Terraform). 
+For example, below is the **AmazonEC2FullAccess**. Take note of the ARN. We will need the IAM policies to be attached to the role that is used by CodeDeploy (This will be automatically done by Terraform). 
 
 ![header image](img/aws-ec2-policy.png)
 
@@ -150,7 +150,7 @@ Outputs:
 public_dns = devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com
 ```
 
-**Take Note of the public_dns** of the application load balancer (Output) which is devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com for my example. You will need it to access it to the sample application.
+**Take Note of the public_dns** of the application load balancer (Output) which is devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com in my example. You will need it to access the sample web application.
 
 By now, the following resources have been created by Terraform.
 
@@ -172,7 +172,7 @@ By now, the following resources have been created by Terraform.
 Follow the step-by-step instructions to manually create a CodeDeploy deployment. 
 
 ### 1. Verify that CodeDeploy Application has been created
- Once the terraform script is completed, you should see that a sample application has been created in AWS CodeDeploy called "cloudguarder_app" which i the name of my sample app. You can use your own application. 
+ Once the terraform script is completed, you should see that a sample application has been created in AWS CodeDeploy console called "cloudguarder_app" which is the name of my sample app. (You can use your own application for testing.)
 
  1. Go to AWS Console
  2. Go to "CodeDeploy", and "Applications"
@@ -195,39 +195,39 @@ You are now in "Create Deployment" settings.
 
 * Make sure that "cd_dg1" is selected for Deployment group.
 * Choose "My application is stored in Amazon S3"
-* My sample cloudguarder_app is hosted on S3 ```s3://jaydenstaticwebsite/download/cloudguarder_cd.zip``` and it is publicly accessible. (That's why you may not need S3 policy for CodeDeploy) You can use my application code, or your can use your own app.
-* Choose "zip" for Revision File Type (This should be automatically chosen for you)
+* My sample cloudguarder_app is hosted on S3 ```s3://jaydenstaticwebsite/download/cloudguarder_cd.zip``` and it is publicly accessible. (That's why you may not need S3 policy for CodeDeploy.) You can use either my application source code or your own application source code.
+* Choose "zip" for Revision File Type (This should be automatically chosen for you.)
 
 ![header image](img/cd-3.png)
 
 * In "Deployment group overrides", Choose ```CodeDeployDefault.AllAtOnce``` for "Deployment configuration".
 
-> Well, this is optional. Because for the lab purpose, my terraform script has created a deployment configuration which will deploy the application to the servers ONE BY ONE - which takes time. So if you want shorter deployment, choose "AllAtOnce".
+> Well, this is optional. For the test purpose, my terraform script has created a deployment configuration which will deploy the application to the servers ONE BY ONE - which takes more time. So if you want a shorter deployment, choose "AllAtOnce".
 
 * Finally, Click "Create Deployment"
 
 ![header image](img/cd-4.png)
 
-You should see the following that shows "installing application on your instances" status.
+You should see the following status page that shows "installing application on your instances" status.
 
-Observe, that CodeDeploy is deploying application to all your EC2 instances at once! 
+Observe that CodeDeploy is deploying application to all your EC2 instances at once! 
 
 ![header image](img/cd-5.png)
 
-After a few minutues, you should see in the Deployment status that "3 of 3 instances updated - Succeeded"!
+After a few minutes, you should see a message under the deployment status, saying "3 of 3 instances updated - Succeeded"!
 
 ![header image](img/cd-6.png)
 
 ---
 ## 5. Test the application deployed by CodeDeploy 
 
-Now, you can go ahead and access the DNS name of the application load balancer on your browser, and you should see the cloudguarder sample app. 
+Now, you can go ahead and access the DNS name of the application load balancer on your browser, and you should see my cloudguarder sample web app. 
 
-> Note: the app's code is deployed to all 3 ec2 instances, and an application load balancer is exposed to the Internet for public access. 
+> Note: By now, the application code is deployed to all 3 ec2 instances, and an application load balancer which sits in front of application servers is exposed to the Internet for public access. 
 
 ![header image](img/cloudguarder-app.png)
 
-CONGRATULATIONS! You've successfully automated creation of AWS infrastructure and deployed your application to applications servers using AWS CodeDeploy!
+CONGRATULATIONS! You've successfully automated creation of AWS infrastructure, and deployed your application to applications servers using Terraform & AWS CodeDeploy!
 
 ---
 ## 6. Clean-up
