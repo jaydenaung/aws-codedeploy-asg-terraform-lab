@@ -22,7 +22,7 @@ resource "aws_autoscaling_group" "devops_web_asg" {
   desired_capacity     = 3
   max_size             = 5
   health_check_type    = "EC2"
-  availability_zones   = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"]
+  #availability_zones   = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"] ## Don't need this with "vpc_zone_identifier" defined.
   target_group_arns = [
     aws_lb_target_group.external_alb_tg_app1.arn
   ]
