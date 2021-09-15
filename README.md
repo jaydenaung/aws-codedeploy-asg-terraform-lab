@@ -225,7 +225,7 @@ Now, you can go ahead and access the DNS name of the application load balancer o
 
 > Note: By now, the application code is deployed to all 3 ec2 instances, and an application load balancer which sits in front of application servers is exposed to the Internet for public access. 
 
-![header image](img/cloudguarder-app.png)
+![header image](img/demo_app.png)
 
 CONGRATULATIONS! You've successfully automated creation of AWS infrastructure, and deployed your application to applications servers using Terraform & AWS CodeDeploy!
 
