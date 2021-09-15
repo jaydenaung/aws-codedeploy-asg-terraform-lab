@@ -1,7 +1,4 @@
-############################################
-########### devops VPC  ################
-############################################
-# Create a devops VPC route tables
+#Devops VPC Route Table
 
 resource "aws_route_table" "devops_pub_route_table" {
   vpc_id = aws_vpc.devops_vpc.id
@@ -17,17 +14,17 @@ resource "aws_route_table" "devops_pub_route_table" {
 }
 
 resource "aws_route_table_association" "devops_table_associatio_2a" {
-  subnet_id      = aws_subnet.devops-pub-1a.id
+  subnet_id      = aws_subnet.devops-pub-2a.id
   route_table_id = aws_route_table.devops_pub_route_table.id
 }
 
 resource "aws_route_table_association" "devops_table_association_2b" {
-  subnet_id      = aws_subnet.devops-pub-1b.id
+  subnet_id      = aws_subnet.devops-pub-2b.id
   route_table_id = aws_route_table.devops_pub_route_table.id
 }
 
 resource "aws_route_table_association" "devops_table_association_2c" {
-  subnet_id      = aws_subnet.devops-pub-1c.id
+  subnet_id      = aws_subnet.devops-pub-2c.id
   route_table_id = aws_route_table.devops_pub_route_table.id
 }
 

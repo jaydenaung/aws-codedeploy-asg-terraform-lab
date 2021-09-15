@@ -1,28 +1,23 @@
-resource "aws_codedeploy_app" "demo_app" {
-  name             = "demo_app"
+resource "aws_codedeploy_app" "cloudguarder_app" {
+  name             = "cloudguarder_app"
   compute_platform = "Server"
 }
 
-resource "aws_sns_topic" "demo_sns_topic" {
-  name = "demo_sns_topic"
+resource "aws_sns_topic" "cloudguarder_sns_topic" {
+  name = "cloudguarder_sns_topic"
 }
 
-resource "aws_codedeploy_deployment_config" "demo_config" {
+resource "aws_codedeploy_deployment_config" "cloudguarder_config" {
   deployment_config_name = "CodeDeployDefault2.EC2AllAtOnce"
-  
-  #traffic_routing_config {
-  #  type = "AllAtOnce"
-  #}
-  # Terraform: Should be "null" for EC2/Server
 
   minimum_healthy_hosts {
     type  = "HOST_COUNT"
-    value = 0
+    value = 2
   }
 }
 
 resource "aws_codedeploy_deployment_group" "cd_dg1" {
-  app_name              = aws_codedeploy_app.demo_app.name
+  app_name              = aws_codedeploy_app.cloudguarder_app.name
   deployment_group_name = "cd_dg1"
   service_role_arn      = aws_iam_role.devops_codedeploy_role.arn
 
@@ -31,7 +26,7 @@ resource "aws_codedeploy_deployment_group" "cd_dg1" {
     trigger_events = ["DeploymentFailure", "DeploymentSuccess", "DeploymentFailure", "DeploymentStop",
     "InstanceStart", "InstanceSuccess", "InstanceFailure"]
     trigger_name       = "event-trigger"
-    trigger_target_arn = aws_sns_topic.demo_sns_topic.arn
+    trigger_target_arn = aws_sns_topic.cloudguarder_sns_topic.arn
   }
 
   auto_rollback_configuration {

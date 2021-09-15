@@ -33,7 +33,7 @@ In this lab, I will show you how you can automate and orchestrate creating your 
 
 Download the necessary terraform scripts by simply cloning (e.g. ```git clone```) this Git repo into your local directory. These terraform scripts will create the following;
 
-1. VPC in ap-southeast-2 Region (you can choose any region that you like)
+1. VPC in ap-southeast-1 Region (you can choose any region that you like)
 2. 3 Subnets in 3 different availability zones
 3. Route table
 4. Launch configuration
@@ -106,8 +106,8 @@ Finally, To execute the terraform script, just do the following:
 
 ```bash
 	terraform init 
-    terraform plan #(And check if the plan works out for you) 
-    terraform apply #Enter "yes" to confirm
+  terraform plan #(And check if the plan works out for you) 
+  terraform apply #Enter "yes" to confirm
 ```
 A CodeDeploy deployment group will be automatically created by Terraform. And you will just need to create a deployment and deploy your app manually as the final step.
 
@@ -154,7 +154,7 @@ public_dns = devops-sg-ASG-EALB-123456.ap-southeast-1.elb.amazonaws.com
 
 By now, the following resources have been created by Terraform.
 
-1. VPC in ap-southeast-2 Region (you can choose any region that you like)
+1. VPC in ap-southeast-1 Region (you can choose any region that you like)
 2. 3 Subnets in 3 different availability zones
 3. Route table
 4. Launch configuration
@@ -172,7 +172,7 @@ By now, the following resources have been created by Terraform.
 Follow the step-by-step instructions to manually create a CodeDeploy deployment. 
 
 ### 1. Verify that CodeDeploy Application has been created
- Once the terraform script is completed, you should see that a sample application has been created in AWS CodeDeploy console called "cloudguarder_app" which is the name of my sample app. (You can use your own application for testing.)
+ Once the terraform script is completed, you should see that a sample application has been created in AWS CodeDeploy console called "demo_app" which is the name of my sample app. (You can use your own application for testing.)
 
  1. Go to AWS Console
  2. Go to "CodeDeploy", and "Applications"
@@ -181,7 +181,7 @@ Follow the step-by-step instructions to manually create a CodeDeploy deployment.
 
 ### 2. Create Deployment
 
-* Click on the "cloudguarder_app".
+* Click on the "demo_app".
 * Under "Deployment groups", you should see a deployment group called "cd_dg1" which has been created by Terraform. Click on it.
 
 ![header image](img/cd-1.png)
@@ -195,7 +195,7 @@ You are now in "Create Deployment" settings.
 
 * Make sure that "cd_dg1" is selected for Deployment group.
 * Choose "My application is stored in Amazon S3"
-* My sample cloudguarder_app is hosted on S3 ```s3://jaydenstaticwebsite/download/cloudguarder_cd.zip``` and it is publicly accessible. (That's why you may not need S3 policy for CodeDeploy.) You can use either my application source code or your own application source code.
+* My sample demo_app is hosted on S3 ```s3://jaydenstaticwebsite/download/demo_cd.zip``` and it is publicly accessible. (That's why you may not need S3 policy for CodeDeploy.) You can use either my application source code or your own application source code.
 * Choose "zip" for Revision File Type (This should be automatically chosen for you.)
 
 ![header image](img/cd-3.png)
@@ -221,7 +221,7 @@ After a few minutes, you should see a message under the deployment status, sayin
 ---
 ## 5. Test the application deployed by CodeDeploy 
 
-Now, you can go ahead and access the DNS name of the application load balancer on your browser, and you should see my cloudguarder sample web app. 
+Now, you can go ahead and access the DNS name of the application load balancer on your browser, and you should see my demo sample web app. 
 
 > Note: By now, the application code is deployed to all 3 ec2 instances, and an application load balancer which sits in front of application servers is exposed to the Internet for public access. 
 

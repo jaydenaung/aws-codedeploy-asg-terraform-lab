@@ -2,17 +2,16 @@
 ########### devops VPC  ##############
 ##########################################
 
-# Create a VPC for the devops Server
+# Devops VPC
 resource "aws_vpc" "devops_vpc" {
-  cidr_block           = var.devops_sg_cidr_vpc
+  cidr_block           = var.devops_cidr_vpc
   enable_dns_hostnames = "true"
 
   tags = {
-    Name = "DevOps_VPC_Singapore"
+    Name = "DevOps_VPC"
   }
 }
 
-# Create an internet gateway to give internet access
 resource "aws_internet_gateway" "devops_internet_gateway" {
   vpc_id = aws_vpc.devops_vpc.id
 
@@ -21,11 +20,9 @@ resource "aws_internet_gateway" "devops_internet_gateway" {
   }
 }
 
-# A permissive security group
 resource "aws_security_group" "devops_security_group" {
   vpc_id = aws_vpc.devops_vpc.id
 
-  # Full inbound access
   ingress {
     from_port   = 0
     to_port     = 0
@@ -33,7 +30,6 @@ resource "aws_security_group" "devops_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # internet access
   egress {
     from_port   = 0
     to_port     = 0

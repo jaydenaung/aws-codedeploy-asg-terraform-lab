@@ -1,8 +1,8 @@
+
 resource "aws_launch_configuration" "web_launch_conf" {
   name_prefix          = "devops-"
-  image_id             = var.ubuntu_18_sg
+  image_id             = var.ubuntu_18_sydney
   iam_instance_profile = aws_iam_instance_profile.ec2_cd_instance_profile.name
-  # image_id                    = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   key_name                    = var.key_name
   security_groups             = [aws_security_group.asg_web_sg.id]
@@ -22,7 +22,7 @@ resource "aws_autoscaling_group" "devops_web_asg" {
   desired_capacity     = 3
   max_size             = 5
   health_check_type    = "EC2"
-  #availability_zones   = ["ap-southeast-1a", "ap-southeast-1b", "ap-southeast-1c"]
+  #availability_zones   = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"] ## Don't need this with "vpc_zone_identifier" defined.
   target_group_arns = [
     aws_lb_target_group.external_alb_tg_app1.arn
   ]
@@ -37,9 +37,9 @@ resource "aws_autoscaling_group" "devops_web_asg" {
   metrics_granularity = "1Minute"
 
   vpc_zone_identifier = [
-    aws_subnet.devops-pub-1a.id,
-    aws_subnet.devops-pub-1b.id,
-    aws_subnet.devops-pub-1c.id
+    aws_subnet.devops-pub-2a.id,
+    aws_subnet.devops-pub-2b.id,
+    aws_subnet.devops-pub-2c.id
   ]
 
   lifecycle {

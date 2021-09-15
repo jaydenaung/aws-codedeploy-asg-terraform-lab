@@ -1,7 +1,4 @@
-# -------------------------------------------
-# Create an External ALB for the applications 
-# -------------------------------------------
-# Security group for alb
+
 resource "aws_security_group" "ealb_sg" {
   name        = "${var.project_name}-Ext-LB-SG"
   description = "load balancer security group"
@@ -20,7 +17,6 @@ resource "aws_security_group" "ealb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # Allow all outbound traffic.
   egress {
     from_port   = 0
     to_port     = 0
@@ -38,7 +34,7 @@ resource "aws_lb" "ealb" {
   name               = "${var.project_name}-ASG-EALB"
   internal           = false
   load_balancer_type = "application"
-  subnets            = [aws_subnet.devops-pub-1a.id, aws_subnet.devops-pub-1b.id, aws_subnet.devops-pub-1c.id]
+  subnets            = [aws_subnet.devops-pub-2a.id, aws_subnet.devops-pub-2b.id, aws_subnet.devops-pub-2c.id]
   security_groups    = [aws_security_group.ealb_sg.id]
 
   tags = {
@@ -56,7 +52,6 @@ resource "aws_lb_target_group" "external_alb_tg_app1" {
     name = "devops_Ext_ALB_TG_App1"
   }
 
-  # Alter the destination of the health check to be the login page.
   health_check {
     path = "/"
     port = "traffic-port"
