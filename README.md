@@ -183,9 +183,6 @@ Follow the step-by-step instructions to manually create a CodeDeploy deployment.
 
 * Click on the "demo_app".
 * Under "Deployment groups", you should see a deployment group called "cd_dg1" which has been created by Terraform. Click on it.
-
-![header image](img/cd-1.png)
-
 * In the deployment group page, You will see "Create deployment" button.
 * Click on it.
 
