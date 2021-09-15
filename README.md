@@ -93,7 +93,7 @@ You will need to ***carefully*** consider the followings for ```terraform.tfvars
 
 * ubuntu_18_sydney - Update this with AMI ID of Ubuntu AIM in your region"
 
-* r53zone - Update this with your Route53 domain name (Optional). You will need this Only if you have a Route53 domain. Otherwise, please skip this and delete "route53.tf"
+* r53zone - Update this with your Route53 domain name (This is optional). You will need this Only if you have a Route53 domain. Otherwise, please skip this and delete "route53.tf"
 
 * externaldnshost - You will need this If you have a Route53 domain, this is the A host for the domain. Otherwise, please skip this and delete "route53.tf".
 
