@@ -31,3 +31,5 @@ override.tf.json
 *.tfvars
 *.x
 .vscode/settings.json
+.archive
+.DS_Store
